@@ -9,4 +9,11 @@
 # This class is called from conserver
 #
 class conserver::config {
+  include ::conserver
+  if $::conserver::enable_server {
+    include ::conserver::server::config
+  }
+  if $::conserver::enable_client {
+    include ::conserver::client::config
+  }
 }

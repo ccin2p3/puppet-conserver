@@ -4,12 +4,14 @@
 # Contributor(s) : ccin2p3
 #
 
-# == Class conserver::service
+# == Class conserver::server::service
 #
-# This class is meant to be called from conserver
+# This class is meant to be called from conserver::server
 # It ensures the service is running
 #
-class conserver::service {
+class conserver::server::service {
+  
+  include conserver::server
 
   service { $conserver::service_name:
     ensure     => running,

@@ -12,12 +12,16 @@
 class conserver::params {
   case $::osfamily {
     'Debian': {
-      $package_name = 'conserver'
+      $server_package_name = 'conserver-server'
+      $client_package_name = 'conserver-client'
       $service_name = 'conserver'
+      $confdir      = '/etc/conserver'
     }
     'RedHat', 'Amazon': {
-      $package_name = 'conserver'
+      $server_package_name = 'conserver'
+      $client_package_name = 'conserver-client'
       $service_name = 'conserver'
+      $confdir      = '/etc'
     }
     default: {
       fail("${::operatingsystem} not supported")
