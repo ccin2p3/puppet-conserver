@@ -18,8 +18,9 @@ class conserver::client (
   $confdir      = $::conserver::confdir,
 ) inherits conserver {
 
+  $configfile = "${confdir}/console.cf"
+
   class { 'conserver::client::install': } ->
-  class { 'conserver::client::config': } ~>
-  class { 'conserver::client::service': } ->
+  class { 'conserver::client::config': } ->
   Class['conserver::client']
 }

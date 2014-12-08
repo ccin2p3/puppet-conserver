@@ -14,14 +14,16 @@ class conserver::params {
     'Debian': {
       $server_package_name = 'conserver-server'
       $client_package_name = 'conserver-client'
-      $service_name = 'conserver'
-      $confdir      = '/etc/conserver'
+      $service_name        = 'conserver'
+      $masters             = [ 'localhost' ]
+      $confdir             = '/etc/conserver'
     }
     'RedHat', 'Amazon': {
       $server_package_name = 'conserver'
       $client_package_name = 'conserver-client'
-      $service_name = 'conserver'
-      $confdir      = '/etc'
+      $service_name        = 'conserver'
+      $masters             = [ 'localhost' ]
+      $confdir             = '/etc'
     }
     default: {
       fail("${::operatingsystem} not supported")

@@ -8,7 +8,8 @@
   "description": "",
   "project_page": "",
   "dependencies": [
-
+    { "name": "pupetlabs/stdlib" },
+    { "name": "pupetlabs/concat" }
   ],
   "types": [
 

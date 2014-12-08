@@ -18,6 +18,7 @@ class conserver (
   $client_package_name = $::conserver::params::client_package_name,
   $service_name        = $::conserver::params::service_name,
   $confdir             = $::conserver::params::confdir,
+  $masters             = $::conserver::params::masters,
   $enable_client       = true,
   $enable_server       = true,
 ) inherits conserver::params {
