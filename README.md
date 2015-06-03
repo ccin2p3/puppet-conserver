@@ -96,15 +96,15 @@ If Default_value is absent: no default value, and parameter is mandatory.
 * check_config_syntax (Bool/`true`) controls wether conserver syntax shall be checked before deployment
 * use_hiera (Bool/`true`) controls wether the module should harvest hiera for config items
 
-### Define conserver::access
+### Define conserver::config::access
 
-### Define conserver::break
+### Define conserver::config::break
 
-### Define conserver::console
+### Define conserver::config::console
 
-### Define conserver::default
+### Define conserver::config::default
 
-### Define conserver::group
+### Define conserver::config::group
 
 ### Define conserver::config::custom
 
