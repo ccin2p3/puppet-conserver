@@ -27,6 +27,7 @@ class conserver (
   $manage_init_defaults = true,
   $server_init_config_file = $::conserver::params::server_init_config_file,
   $server_init_config_hash = {},
+  $use_hiera = true,
   $check_config_syntax = true
 ) inherits conserver::params {
 
@@ -51,5 +52,8 @@ class conserver (
   }
   if $enable_server {
     include ::conserver::server
+    if $use_hiera {
+      include ::conserver::config::hiera
+    }
   }
 }

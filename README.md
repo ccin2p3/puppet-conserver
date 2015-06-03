@@ -94,6 +94,19 @@ If Default_value is absent: no default value, and parameter is mandatory.
 * server_init_config_file (String/auto) overrides sysvinit configfile path
 * server_init_config_hash (Hash/{}) will be merged to OS default. Add any key/values here that may be used by the startup script
 * check_config_syntax (Bool/`true`) controls wether conserver syntax shall be checked before deployment
+* use_hiera (Bool/`true`) controls wether the module should harvest hiera for config items
+
+### Define conserver::access
+
+### Define conserver::break
+
+### Define conserver::console
+
+### Define conserver::default
+
+### Define conserver::group
+
+### Define conserver::config::custom
 
 ## Limitations
 
