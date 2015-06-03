@@ -1,5 +1,5 @@
 default <%=@title%> {
-<% @config.each do |k,v| -%>
+<% @config.sort.each do |k,v| -%>
   <%=k%> <%=v%>;
 <% end -%>
 }

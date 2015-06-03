@@ -2,7 +2,7 @@ console <%=@title%> {
 <% if @master -%>
   master <%=@master%>;
 <% end -%>
-<% @config.each do |k,v| -%>
+<% @config.sort.each do |k,v| -%>
   <%=k%> <%=v%>;
 <% end -%>
 }
