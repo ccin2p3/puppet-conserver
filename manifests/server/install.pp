@@ -8,9 +8,11 @@
 #
 class conserver::server::install {
   
-  include ::conserver::server
+  include ::conserver
 
-  package { $conserver::server::package_name:
+  if $::conserver::manage_package {
+  package { $::conserver::server_package_name:
     ensure => present,
+  }
   }
 }

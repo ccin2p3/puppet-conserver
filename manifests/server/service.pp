@@ -11,12 +11,13 @@
 #
 class conserver::server::service {
   
-  include conserver::server
+  include conserver
 
-  service { $conserver::service_name:
+  service { $::conserver::service_name:
     ensure     => running,
     enable     => true,
     hasstatus  => true,
     hasrestart => true,
+    restart    => $::conserver::reload_cmd
   }
 }

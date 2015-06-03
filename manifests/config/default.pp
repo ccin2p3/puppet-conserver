@@ -4,7 +4,7 @@
 # Contributor(s) : ccin2p3
 #
 
-# == Define conserver::server::config::default
+# == Define conserver::config::default
 #
 # This type defines default blocks in conserver.cf
 #
@@ -13,7 +13,7 @@
 # Parameters:
 # - $config hash describing default block
 
-define conserver::server::config::default (
+define conserver::config::default (
   $config,
   $order = '25'
 ){

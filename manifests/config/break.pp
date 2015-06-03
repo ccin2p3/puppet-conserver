@@ -4,7 +4,7 @@
 # Contributor(s) : ccin2p3
 #
 
-# == Define conserver::server::config::break
+# == Define conserver::config::break
 #
 # This type defines a break sequence in conserver.cf
 #
@@ -12,7 +12,7 @@
 # - $users an array of members
 #
 
-define conserver::server::config::break (
+define conserver::config::break (
   $string,
   $delay = 250,
   $order = '02'

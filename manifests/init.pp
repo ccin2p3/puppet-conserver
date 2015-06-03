@@ -19,11 +19,32 @@ class conserver (
   $service_name        = $::conserver::params::service_name,
   $confdir             = $::conserver::params::confdir,
   $masters             = $::conserver::params::masters,
+  $reload_cmd          = $::conserver::params::reload_cmd,
+  $restart_cmd         = $::conserver::params::restart_cmd,
   $enable_client       = true,
   $enable_server       = true,
+  $manage_package      = true,
+  $manage_init_defaults = true,
+  $server_init_config_file = $::conserver::params::server_init_config_file,
+  $server_init_config_hash = {},
+  $check_config_syntax = true
 ) inherits conserver::params {
 
   # validate parameters here
+  validate_string($server_package_name)
+  validate_string($client_package_name)
+  validate_string($service_name)
+  validate_absolute_path($confdir)
+  validate_array($masters)
+  validate_string($reload_cmd)
+  validate_string($restart_cmd)
+  validate_bool($enable_client)
+  validate_bool($enable_server)
+  validate_bool($manage_init_defaults)
+  validate_bool($manage_package)
+  validate_bool($check_config_syntax)
+  validate_absolute_path($server_init_config_file)
+  validate_hash($server_init_config_hash)
   
   if $enable_client {
     include ::conserver::client

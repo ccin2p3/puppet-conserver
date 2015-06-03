@@ -13,12 +13,10 @@
 # [*package_name*]
 #   Override ostomatic package_name
 #
-class conserver::server (
-  $package_name = $::conserver::server_package_name,
-  $service_name = $::conserver::service_name,
-  $confdir      = $::conserver::confdir,
-  $masters      = $::conserver::masters,
-) inherits conserver {
+class conserver::server {
+  include ::conserver
+  $confdir      = $::conserver::confdir
+  $masters      = $::conserver::masters
   
   $configfile = "${confdir}/conserver.cf"
 

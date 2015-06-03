@@ -4,7 +4,7 @@
 # Contributor(s) : ccin2p3
 #
 
-# == Define conserver::server::config::access
+# == Define conserver:server::config::access
 #
 # This type defines access blocks in conserver.cf
 #
@@ -17,7 +17,7 @@
 #            with limited console access
 # - $rejected array of hostnames to reject
 
-define conserver::server::config::access (
+define conserver::config::access (
   $trusted = [],
   $limited = [],
   $rejected = [],

@@ -17,6 +17,7 @@ class conserver::params {
       $service_name        = 'conserver'
       $masters             = [ 'localhost' ]
       $confdir             = '/etc/conserver'
+      $restart_cmd         = "/usr/sbin/service ${service_name} restart"
     }
     'RedHat', 'Amazon': {
       $server_package_name = 'conserver'
@@ -24,9 +25,13 @@ class conserver::params {
       $service_name        = 'conserver'
       $masters             = [ 'localhost' ]
       $confdir             = '/etc'
+      $restart_cmd         = "/sbin/service ${service_name} restart"
     }
     default: {
       fail("${::operatingsystem} not supported")
     }
   }
+  $reload_cmd = "service ${service_name} reload"
+  $server_init_config_file = '/etc/default/conserver'
+  $server_init_config_hash = {}
 }

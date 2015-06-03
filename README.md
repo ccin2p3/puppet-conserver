@@ -1,60 +1,105 @@
 #### Table of Contents
 
 1. [Overview](#overview)
-2. [Module Description - What the module does and why it is useful](#module-description)
-3. [Setup - The basics of getting started with conserver](#setup)
+2. [Module Description](#module-description)
+3. [Setup](#setup)
     * [What conserver affects](#what-conserver-affects)
     * [Setup requirements](#setup-requirements)
     * [Beginning with conserver](#beginning-with-conserver)
-4. [Usage - Configuration options and additional functionality](#usage)
-5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
+4. [Usage](#usage)
+5. [Reference](#reference)
+5. [Limitations](#limitations)
+6. [Development](#development)
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves. This is your 30 second elevator pitch for your module. Consider including OS/Puppet version it works with.       
+This puppet module will manage the [conserver](http://www.conserver.com) application.
+From the website: *Conserver is an application that allows multiple users to watch a serial console at the same time*.
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology the module integrates with and what that integration enables. This section should answer the questions: "What does this module *do*?" and "Why would I use it?"
-
-If your module has a range of functionality (installation, configuration, management, etc.) this is the time to mention it.
+This module will manage the conserver application by installing required packages, setting up the configuration file, and enabling the service.
 
 ## Setup
 
 ### What conserver affects
 
-* A list of files, packages, services, or operations that the module will alter, impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form. 
+This module will affect the following resources, some of which are optional.
 
-### Setup Requirements **OPTIONAL**
+* conserver master configuration file
+* console configuration file
+* conserver init defaults file (optional)
+* conserver and console package installation (optional)
+* conserver service
 
-If your module requires anything extra before setting up (pluginsync enabled, etc.), mention it here. 
+### Setup Requirements
+
+* puppetlabs/concat
+* puppetlabs/stdlib
 
 ### Beginning with conserver
 
-The very basic steps needed for a user to get the module up and running. 
-
-If your most recent release breaks compatibility or requires particular steps for upgrading, you may wish to include an additional section here: Upgrading (For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
-
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing the fancy stuff with your module here. 
+### Simple
+
+```puppet
+class {conserver:
+  enable_server => true
+}
+conserver::config::console { 'foo':
+  'type' => 'exec',
+  'rw'   => '*',
+  'exec' => 'ssh foo',
+  'master' => 'conserver'
+}
+```
+
+### Master list
+
+```puppet
+class {conserver:
+  enable_server => true
+  masters => [ 'localhost', '8.8.8.8', '127.0.0.1' ],
+}
+ # automatic master
+conserver::config::console { 'foo':
+  'type' => 'exec',
+  'rw'   => '*',
+  'exec' => 'ssh foo',
+}
+```
 
 ## Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module. This section should include all of the under-the-hood workings of your module so people know what the module is touching on their system but don't need to mess with things. (We are working on automating this section!)
+### Class conserver
+
+#### Parameters
+
+List of parameters in the form: <param_name> (Type/Default_value).
+If Default_value is auto: automatic based on osfamily.
+If Default_value is absent: no default value, and parameter is mandatory.
+
+* server_package_name (String/auto) overrides conserver package name to install
+* client_package_name (String/auto) overrides console package name to install
+* service_name (String/auto) overrides service name to manage
+* confdir (String/auto) overrides configuration directory path
+* masters (Array/`[]`) list of conserver masters in your site. This will feed the defined consoles where the master name is omitted
+* reload_cmd (String/auto) overrides service reload command. Reloads are done when the conserver config file changed
+* restart_cmd (String/auto) overrides service restart command. Restarts are done when the init config file changes.
+* enable_client (Bool/`true`) controls wether conserver is enabled
+* enable_server (Bool/`true`) controls wether console is enabled
+* manage_package (Bool/`true`) controls wether packages shall be managed
+* manage_init_defaults (Bool/`true`) controls wether sysvinit default files shall be managed
+* server_init_config_file (String/auto) overrides sysvinit configfile path
+* server_init_config_hash (Hash/{}) will be merged to OS default. Add any key/values here that may be used by the startup script
+* check_config_syntax (Bool/`true`) controls wether conserver syntax shall be checked before deployment
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+Currently only conserver config is being handled.
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them know what the ground rules for contributing are.
+Issues and patches on github
 
-## Release Notes/Contributors/Etc **Optional**
-
-If you aren't using changelog, put your release notes here (though you should consider using changelog). You may also add any additional sections you feel are necessary or important to include here. Please use the `## ` header. 

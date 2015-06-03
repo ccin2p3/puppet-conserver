@@ -5,22 +5,22 @@ class {'conserver':
   masters => [ 'localhost', '8.8.8.8', '127.0.0.1' ],
 }
 
-conserver::server::config::break { '1':
+conserver::config::break { '1':
   string => 'plop'
 }
 
-conserver::server::config::group { 'sysadmin':
+conserver::config::group { 'sysadmin':
   users => ['me','myself','I']
 }
 
-conserver::server::config::default { '*':
+conserver::config::default { '*':
   config  => {
     'master' => 'localhost'
   }
 }
 
 # console with forced master
-@conserver::server::config::console { 'foo':
+@conserver::config::console { 'foo':
   config     => {
     'type'   => 'exec',
     'rw'     => '*',
@@ -30,7 +30,7 @@ conserver::server::config::default { '*':
 }
 
 # console with automatic master
-@conserver::server::config::console { 'bar':
+@conserver::config::console { 'bar':
   config     => {
     'type'   => 'exec',
     'rw'     => '*',
@@ -38,5 +38,5 @@ conserver::server::config::default { '*':
   },
 }
 
-Conserver::Server::Config::Console <| |>
+Conserver::Config::Console <| |>
 

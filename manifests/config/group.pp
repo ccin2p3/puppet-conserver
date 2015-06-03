@@ -4,7 +4,7 @@
 # Contributor(s) : ccin2p3
 #
 
-# == Define conserver::server::config::group
+# == Define conserver::config::group
 #
 # This type defines user groups in conserver.cf
 #
@@ -14,7 +14,7 @@
 # - $users an array of members
 #
 
-define conserver::server::config::group (
+define conserver::config::group (
   $users,
   $order = '05'
 ){
