@@ -32,7 +32,7 @@ class conserver::server::config {
     $merged_init_config_hash = merge($init_config_hash,$::conserver::params::server_init_config_hash)
     file {$init_config_file:
       ensure  => present,
-      content => template('conserver/server/init_config_file.erb'),
+      content => template($::conserver::params::server_init_config_tpl),
       notify  => Exec[conserver_restart]
     }
   }
