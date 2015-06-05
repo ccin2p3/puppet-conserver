@@ -29,7 +29,7 @@ class conserver::server::config {
   }
   if $::conserver::manage_init_defaults {
     include conserver::server::service::restart
-    $merged_init_config_hash = merge($init_config_hash,$::conserver::params::server_init_config_hash)
+    $merged_init_config_hash = merge($::conserver::params::server_init_config_hash,$init_config_hash)
     file {$init_config_file:
       ensure  => present,
       content => template($::conserver::params::server_init_config_tpl),
