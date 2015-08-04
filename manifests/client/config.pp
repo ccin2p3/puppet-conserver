@@ -18,4 +18,9 @@ class conserver::client::config {
     warn           => true,
     ensure_newline => true,
   }
+  concat::fragment { 'Console header':
+    target  => 'ConsoleConfigFile',
+    order   => '00',
+    content => '# conserver/console configuration'
+  }
 }
