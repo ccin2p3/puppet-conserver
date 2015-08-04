@@ -18,6 +18,34 @@ class conserver::params {
       $masters             = [ 'localhost' ]
       $confdir             = '/etc/conserver'
       $restart_cmd         = "/usr/sbin/service ${service_name} restart"
+      case $::operatingsystemmajrelease {
+        7: {
+          $server_init_config_file = '/etc/default/conserver'
+          $server_init_config_tpl = 'conserver/server/init_config_file.erb'
+          $server_init_config_hash = {}
+        }
+        8,'stretch/sid': {
+          $server_init_config_file = '/usr/lib/systemd/system/conserver.service'
+          $server_init_config_tpl = 'conserver/server/init_config_file_systemd.erb'
+          $server_init_config_hash = {
+            'Unit'          => {
+              'Description' => 'Conserver Serial-Port Console Daemon',
+              'After'       => 'network.target',
+            },
+            'Service' => {
+              'Type' => 'forking',
+              'ExecStart' => '/usr/sbin/conserver -d',
+              'User' => 'root',
+            },
+            'Install' => {
+              'WantedBy' => 'multi-user.target'
+            }
+          }
+        }
+        default: {
+          fail("operatingsystemmajrelease `${::operatingsystemmajrelease}` not supported")
+        }
+      }
     }
     'RedHat', 'Amazon': {
       $server_package_name = 'conserver'
