@@ -1,19 +1,28 @@
 {
   "name": "ccin2p3-conserver",
   "version": "0.1.0",
-  "source": "",
+  "source": "git@gitlab.in2p3.fr:cc-in2p3-puppet-service/module-conserver.git",
+  "project_page": "https://gitlab.in2p3.fr/cc-in2p3-puppet-service/module-conserver",
+  "issues_url": "https://gitlab.in2p3.fr/cc-in2p3-puppet-service/module-conserver/issues",
   "author": "ccin2p3",
-  "license": "Apache 2.0",
-  "summary": "",
-  "description": "",
-  "project_page": "",
+  "license": "CeCILL B",
+  "description": "Manage conserver console management",
   "dependencies": [
-    { "name": "pupetlabs/stdlib" },
-    { "name": "pupetlabs/concat" }
+    { "name": "pupetlabs/stdlib","version_requirement":">= 2.4.0" },
+    { "name": "pupetlabs/concat","version_requirement":">= 1.0.4 <2.0.0" }
   ],
-  "types": [
-
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">=3.0.0 <4.0.0"
+    }
   ],
-  "checksums": {
-  }
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat"
+    },
+    {
+      "operatingsystem": "Debian"
+    }
+  ]
 }
