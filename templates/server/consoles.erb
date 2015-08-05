@@ -1,0 +1,16 @@
+<% @hash_data.sort.each do |console, config| -%>
+console <%=console%> {
+<%-
+if config['master']
+  master = config['master']
+else
+  master = @masters[scope.function_rrindex([console,@masters.size])]
+end
+-%>
+  master <%=master%>;
+<% config.sort.each do |k,v| -%>
+  <%=k%> <%=v%>;
+<% end -%>
+}
+<% end %>
+
