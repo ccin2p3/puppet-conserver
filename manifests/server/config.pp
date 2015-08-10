@@ -19,6 +19,7 @@ class conserver::server::config {
     path           => $::conserver::server::configfile,
     warn           => true,
     ensure_newline => true,
+    mode           => '0640',
   }
   if $::conserver::check_config_syntax {
     Concat <| title == 'ConserverConfigFile' |> {

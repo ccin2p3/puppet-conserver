@@ -17,6 +17,7 @@ class conserver::client::config {
     path           => $::conserver::client::configfile,
     warn           => true,
     ensure_newline => true,
+    mode           => '0644',
   }
   concat::fragment { 'Console header':
     target  => 'ConsoleConfigFile',
