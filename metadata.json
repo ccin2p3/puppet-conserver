@@ -1,6 +1,6 @@
 {
   "name": "ccin2p3-conserver",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "source": "git@gitlab.in2p3.fr:cc-in2p3-puppet-service/module-conserver.git",
   "project_page": "https://gitlab.in2p3.fr/cc-in2p3-puppet-service/module-conserver",
   "issues_url": "https://gitlab.in2p3.fr/cc-in2p3-puppet-service/module-conserver/issues",

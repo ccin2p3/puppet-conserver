@@ -2,6 +2,9 @@
 
 This uses semantic versioning
 
+## 2015-08-10 Release 0.2.1
+* fix incorrect sysvinit file location for EL6
+
 ## 2015-08-05 Release 0.2.0
 * add define to add multiple consoles at once
   this is much faster

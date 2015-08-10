@@ -56,7 +56,7 @@ class conserver::params {
       $restart_cmd         = "/sbin/service ${service_name} restart"
       case $::operatingsystemmajrelease {
         6: {
-          $server_init_config_file = '/etc/default/conserver'
+          $server_init_config_file = '/etc/sysconfig/conserver'
           $server_init_config_tpl = 'conserver/server/init_config_file.erb'
           $server_init_config_hash = {}
         }
