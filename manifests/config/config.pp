@@ -19,7 +19,7 @@ define conserver::config::config (
 ){
   validate_hash($config)
 
-  concat::fragment { "ConserverDefaultBlock ${title}":
+  concat::fragment { "ConserverConfigBlock ${title}":
     target  => 'ConserverConfigFile',
     content => template('conserver/server/config.erb'),
     order   => $order
