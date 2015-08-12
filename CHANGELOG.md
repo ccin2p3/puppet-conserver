@@ -5,6 +5,7 @@ This uses semantic versioning
 ## 2015-08-10 Release 0.2.2
 * revert 0.2.1
 * manage file permissions for console.cf and conserver.cf
+* support config blocks on master e.g. `config * {}`
 
 ## 2015-08-10 UNRELEASED 0.2.1
 * fix incorrect sysvinit file location for EL6
