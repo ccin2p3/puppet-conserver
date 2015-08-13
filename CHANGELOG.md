@@ -2,6 +2,9 @@
 
 This uses semantic versioning
 
+## 2015-08-13 Release 0.2.3
+* harvest hiera for conserver::config::config type
+
 ## 2015-08-10 Release 0.2.2
 * revert 0.2.1
 * manage file permissions for console.cf and conserver.cf
