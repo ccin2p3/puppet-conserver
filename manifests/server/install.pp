@@ -7,12 +7,12 @@
 # == Class conserver::server::install
 #
 class conserver::server::install {
-  
+
   include ::conserver
 
   if $::conserver::manage_package {
-  package { $::conserver::server_package_name:
-    ensure => present,
-  }
+    package { $::conserver::server_package_name:
+      ensure => present,
+    }
   }
 }

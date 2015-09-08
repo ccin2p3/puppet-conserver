@@ -1,3 +1,4 @@
+# restart service
 class conserver::server::service::restart {
   include ::conserver
   exec { 'conserver_restart':

@@ -46,7 +46,7 @@ class conserver (
   validate_bool($check_config_syntax)
   validate_absolute_path($server_init_config_file)
   validate_hash($server_init_config_hash)
-  
+
   if $enable_client {
     include ::conserver::client
   }

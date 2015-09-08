@@ -10,7 +10,7 @@
 # It ensures the service is running
 #
 class conserver::server::service {
-  
+
   include conserver
 
   service { $::conserver::service_name:

@@ -10,9 +10,9 @@
 # It ensures the configuration files are generated
 #
 class conserver::client::config {
-  
+
   include ::conserver::client
-  
+
   concat { 'ConsoleConfigFile':
     path           => $::conserver::client::configfile,
     warn           => true,

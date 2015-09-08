@@ -1,3 +1,4 @@
+# harvest hiera
 class conserver::config::hiera (
   $prefix = ''
 ) {

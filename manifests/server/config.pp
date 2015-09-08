@@ -10,11 +10,11 @@
 # It ensures the configuration files are generated
 #
 class conserver::server::config {
-  
+
   include ::conserver::server
   $init_config_file = $::conserver::server_init_config_file
   $init_config_hash = $::conserver::server_init_config_hash
-  
+
   @concat { 'ConserverConfigFile':
     path           => $::conserver::server::configfile,
     warn           => true,

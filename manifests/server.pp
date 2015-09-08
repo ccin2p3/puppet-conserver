@@ -17,7 +17,7 @@ class conserver::server {
   include ::conserver
   $confdir      = $::conserver::confdir
   $masters      = $::conserver::masters
-  
+
   $configfile = "${confdir}/conserver.cf"
 
   class { 'conserver::server::install': } ->
