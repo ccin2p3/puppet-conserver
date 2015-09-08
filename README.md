@@ -40,6 +40,7 @@ This module will affect the following resources, some of which are optional.
 
 * puppetlabs/concat
 * puppetlabs/stdlib
+* puppet > 3.5.0
 
 ### Beginning with conserver
 
