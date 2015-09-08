@@ -60,7 +60,7 @@ conserver::config::console { 'foo':
 ### Automatic master
 
 ```puppet
-class {conserver:
+class { conserver:
   masters => [ 'localhost', '8.8.8.8', '127.0.0.1' ],
 }
  # automatic master
@@ -69,6 +69,20 @@ conserver::config::console { 'foo':
   'rw'   => '*',
   'exec' => 'ssh foo',
 }
+```
+
+### Hiera
+
+```puppet
+class { conserver:
+  use_hiera => true
+}
+```
+```YAML
+conserver::config::console:
+  bar:
+    type: device
+    device: /dev/ttyUSB0
 ```
 
 ## Reference
@@ -81,21 +95,21 @@ List of parameters in the form: <param_name> (Type/Default_value).
 If Default_value is auto: automatic based on osfamily.
 If Default_value is absent: no default value, and parameter is mandatory.
 
-* server_package_name (String/auto) overrides conserver package name to install
-* client_package_name (String/auto) overrides console package name to install
-* service_name (String/auto) overrides service name to manage
-* confdir (String/auto) overrides configuration directory path
-* masters (Array/`[]`) list of conserver masters in your site. This will feed the defined consoles where the master name is omitted
-* reload_cmd (String/auto) overrides service reload command. Reloads are done when the conserver config file changed
-* restart_cmd (String/auto) overrides service restart command. Restarts are done when the init config file changes.
-* enable_client (Bool/`true`) controls wether conserver is enabled
-* enable_server (Bool/`true`) controls wether console is enabled
-* manage_package (Bool/`true`) controls wether packages shall be managed
-* manage_init_defaults (Bool/`true`) controls wether sysvinit default files shall be managed
-* server_init_config_file (String/auto) overrides sysvinit configfile path
-* server_init_config_hash (Hash/{}) will be merged to OS default. Add any key/values here that may be used by the startup script
-* check_config_syntax (Bool/`true`) controls wether conserver syntax shall be checked before deployment
-* use_hiera (Bool/`true`) controls wether the module should harvest hiera for config items
+* `server_package_name` (String/auto) overrides conserver package name to install
+* `client_package_name` (String/auto) overrides console package name to install
+* `service_name` (String/auto) overrides service name to manage
+* `confdir` (String/auto) overrides configuration directory path
+* `masters` (Array/`[]`) list of conserver masters in your site. This will feed the defined consoles where the master name is omitted
+* `reload_cmd` (String/auto) overrides service reload command. Reloads are done when the conserver config file changed
+* `restart_cmd` (String/auto) overrides service restart command. Restarts are done when the init config file changes.
+* `enable_client` (Bool/`true`) controls wether conserver is enabled
+* `enable_server` (Bool/`true`) controls wether console is enabled
+* `manage_package` (Bool/`true`) controls wether packages shall be managed
+* `manage_init_defaults` (Bool/`true`) controls wether sysvinit default files shall be managed
+* `server_init_config_file` (String/auto) overrides sysvinit configfile path
+* `server_init_config_hash` (Hash/{}) will be merged to OS default. Add any key/values here that may be used by the startup script
+* `check_config_syntax` (Bool/`true`) controls wether conserver syntax shall be checked before deployment
+* `use_hiera` (Bool/`true`) controls wether the module should harvest hiera for config items
 
 ### Define conserver::config::config
 
@@ -103,18 +117,18 @@ Conserver `config` block.
 
 #### Parameters
 
-* config (Hash) See `conserver.cf` manpage
-* order (String/`'25'`) Position in config file
+* `config` (Hash) See `conserver.cf` manpage
+* `order` (String/`'25'`) Position in config file
 
 #### Example
 
 ```Puppet
 conserver::config::config {'*':
   config => {
-		'primaryport' => 33000,
-		'unifiedlog'  => '/var/log/conserver/console.log',
-		'logfile'     => '/var/log/conserver/server.log',
-	}
+    'primaryport' => 33000,
+    'unifiedlog'  => '/var/log/conserver/console.log',
+    'logfile'     => '/var/log/conserver/server.log',
+  }
 }
 ```
 ### Define conserver::config::access
@@ -124,10 +138,10 @@ See `conserver.cf` manpage.
 
 #### Parameters
 
-* trusted (Array) List of trusted masters
-* limited (Array) List of masters with limited access
-* rejected (Array) List of masters with no access
-* order (String/`'15'`) Position in config file
+* `trusted` (Array) List of trusted masters
+* `limited` (Array) List of masters with limited access
+* `rejected` (Array) List of masters with no access
+* `order` (String/`'15'`) Position in config file
 
 #### Example
 
@@ -144,9 +158,9 @@ See `conserver.cf` manpage.
 
 #### Parameters
 
-* string (String)
-* delay (Int)
-* order (String/`'02'`) Position in config file
+* `string` (String)
+* `delay` (Int)
+* `order` (String/`'02'`) Position in config file
 
 #### Example
 
@@ -162,18 +176,18 @@ Conserver block to define a `console`.
 
 #### Parameters
 
-* config (Hash)
-* order (String/`'45'`) Position in config file
+* `config` (Hash)
+* `order` (String/`'45'`) Position in config file
 
 #### Example
 
 ```Puppet
 conserver::config::console { 'node73':
   config => {
-  	master  => 'conserv01',
-		include => 'cyclades_sp16',
-		device  => '/dev/ttyC0'
- 	}
+    master  => 'conserv01',
+    include => 'cyclades_sp16',
+    device  => '/dev/ttyC0'
+  }
 }
 ```
 
@@ -184,19 +198,19 @@ See `conserver.cf` manpage.
 
 #### Parameters
 
-* config (Hash)
-* order (String/`'25'`) Position in config file
+* `config` (Hash)
+* `order` (String/`'25'`) Position in config file
 
 #### Examples
 
 ```Puppet
 conserver::config::default { 'cyclades_sp16':
-	config => {
-		type   => 'device',
-		parity => 'none',
-		baud   => 9600,
-		break  => 3,
-	}
+  config => {
+    type   => 'device',
+    parity => 'none',
+    baud   => 9600,
+    break  => 3,
+  }
 }
 ```
 
@@ -208,8 +222,8 @@ See `conserver.cf` manpage.
 
 #### Parameters
 
-* users (Array) list of users belonging to group
-* order (String/`'05'`) Position in config file
+* `users` (Array) list of users belonging to group
+* `order` (String/`'05'`) Position in config file
 
 #### Example
 
@@ -227,10 +241,10 @@ For convenience, the module ships `server/custom.erb` which will generate key-va
 
 #### Parameters
 
-* content (String/`$title`) Raw block content.
-* template (String/`undef`) Path to template which will be used to build block
-* config (Hash) Hash content. Used in template
-* order (String/`'01'`) Position in config file
+* `content` (String/`$title`) Raw block content.
+* `template` (String/`undef`) Path to template which will be used to build block
+* `config` (Hash) Hash content. Used in template
+* `order` (String/`'01'`) Position in config file
 
 #### Example
 
@@ -239,7 +253,7 @@ conserver::config::custom { '# this is a comment in conserver.cf': }
 conserver::config::custom { 'unsupportedblock foo':
   template => 'conserver/server/custom.erb',
   config  => {
-  	'foo' => 'bar'
+    'foo' => 'bar'
   }
 }
 ```
@@ -250,17 +264,17 @@ Client configuration block (for configuring `console` *e.g.* `/etc/console.cf`).
 
 #### Parameters
 
-* config (Hash)
-* order (String/`'01'`) Position in config file
+* `config` (Hash)
+* `order` (String/`'01'`) Position in config file
 
 #### Example
 
 ```Puppet
 conserver::config::client {'*':
-	config => {
-		'master' => 'conserv02',
-		'port'   => 33000,
-	}
+  config => {
+    'master' => 'conserv02',
+    'port'   => 33000,
+  }
 }
 ```
 
