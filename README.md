@@ -1,3 +1,7 @@
+#ccin2p3-conserver
+
+[![Build Status](https://api.travis-ci.org/ccin2p3/puppet-conserver.svg?branch=v2.2.4)](https://travis-ci.org/ccin2p3/puppet-conserver)
+
 #### Table of Contents
 
 1. [Overview](#overview)
@@ -44,9 +48,7 @@ This module will affect the following resources, some of which are optional.
 ### Simple
 
 ```puppet
-class {conserver:
-  enable_server => true
-}
+include ::conserver
 conserver::config::console { 'foo':
   'type' => 'exec',
   'rw'   => '*',
@@ -55,11 +57,10 @@ conserver::config::console { 'foo':
 }
 ```
 
-### Master list
+### Automatic master
 
 ```puppet
 class {conserver:
-  enable_server => true
   masters => [ 'localhost', '8.8.8.8', '127.0.0.1' ],
 }
  # automatic master
@@ -96,21 +97,176 @@ If Default_value is absent: no default value, and parameter is mandatory.
 * check_config_syntax (Bool/`true`) controls wether conserver syntax shall be checked before deployment
 * use_hiera (Bool/`true`) controls wether the module should harvest hiera for config items
 
+### Define conserver::config::config
+
+Conserver `config` block.
+
+#### Parameters
+
+* config (Hash) See `conserver.cf` manpage
+* order (String/`'25'`) Position in config file
+
+#### Example
+
+```Puppet
+conserver::config::config {'*':
+  config => {
+		'primaryport' => 33000,
+		'unifiedlog'  => '/var/log/conserver/console.log',
+		'logfile'     => '/var/log/conserver/server.log',
+	}
+}
+```
 ### Define conserver::config::access
+
+Conserver `access` block.
+See `conserver.cf` manpage.
+
+#### Parameters
+
+* trusted (Array) List of trusted masters
+* limited (Array) List of masters with limited access
+* rejected (Array) List of masters with no access
+* order (String/`'15'`) Position in config file
+
+#### Example
+
+```Puppet
+conserver::config::access { '*':
+  trusted => [ 'conserv01', 'conserv02' ]
+}
+```
 
 ### Define conserver::config::break
 
+Conserver `break` block.
+See `conserver.cf` manpage.
+
+#### Parameters
+
+* string (String)
+* delay (Int)
+* order (String/`'02'`) Position in config file
+
+#### Example
+
+```Puppet
+conserver::config::break { '1':
+  string => '\d\035send brk\n'
+}
+```
+
 ### Define conserver::config::console
+
+Conserver block to define a `console`.
+
+#### Parameters
+
+* config (Hash)
+* order (String/`'45'`) Position in config file
+
+#### Example
+
+```Puppet
+conserver::config::console { 'node73':
+  config => {
+  	master  => 'conserv01',
+		include => 'cyclades_sp16',
+		device  => '/dev/ttyC0'
+ 	}
+}
+```
 
 ### Define conserver::config::default
 
+Conserver `default` block.
+See `conserver.cf` manpage.
+
+#### Parameters
+
+* config (Hash)
+* order (String/`'25'`) Position in config file
+
+#### Examples
+
+```Puppet
+conserver::config::default { 'cyclades_sp16':
+	config => {
+		type   => 'device',
+		parity => 'none',
+		baud   => 9600,
+		break  => 3,
+	}
+}
+```
+
 ### Define conserver::config::group
+
+Conserver `group` block. Defines user groups.
+
+See `conserver.cf` manpage.
+
+#### Parameters
+
+* users (Array) list of users belonging to group
+* order (String/`'05'`) Position in config file
+
+#### Example
+
+```Puppet
+conserver::config:: { 'devops':
+  users => [ 'john', 'sarah' ]
+}
+```
 
 ### Define conserver::config::custom
 
+Custom conserver blocks, for which there is no specific `conserver::config::*` define.
+As parameter you can either use raw `content` (*e.g.* for comments), or `template` and `config`.
+For convenience, the module ships `server/custom.erb` which will generate key-values.
+
+#### Parameters
+
+* content (String/`$title`) Raw block content.
+* template (String/`undef`) Path to template which will be used to build block
+* config (Hash) Hash content. Used in template
+* order (String/`'01'`) Position in config file
+
+#### Example
+
+```Puppet
+conserver::config::custom { '# this is a comment in conserver.cf': }
+conserver::config::custom { 'unsupportedblock foo':
+  template => 'conserver/server/custom.erb',
+  config  => {
+  	'foo' => 'bar'
+  }
+}
+```
+
+### Define conserver::config::client
+
+Client configuration block (for configuring `console` *e.g.* `/etc/console.cf`).
+
+#### Parameters
+
+* config (Hash)
+* order (String/`'01'`) Position in config file
+
+#### Example
+
+```Puppet
+conserver::config::client {'*':
+	config => {
+		'master' => 'conserv02',
+		'port'   => 33000,
+	}
+}
+```
+
 ## Limitations
 
-Currently only conserver config is being handled.
+Only tested on RHEL6 and RHEL7
 
 ## Development
 

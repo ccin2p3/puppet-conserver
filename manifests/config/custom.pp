@@ -15,12 +15,21 @@
 
 define conserver::config::custom (
   $content = $title,
+  $template = undef,
+  $config = {},
   $order = '01'
 ){
   validate_string($content)
+  validate_string($template)
+  validate_hash($config)
+  if $template {
+    $_content = template($template)
+  } else {
+    $_content = $content
+  }
   concat::fragment { "ConserverCustom ${title}":
     target  => 'ConserverConfigFile',
-    content => $content,
+    content => $_content,
     order   => $order
   }
 }

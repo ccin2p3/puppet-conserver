@@ -2,6 +2,10 @@
 
 This uses semantic versioning
 
+## 2015-09-08 Release 0.2.4
+* real documentation
+* custom blocks can use hash using template
+
 ## 2015-08-13 Release 0.2.3
 * harvest hiera for conserver::config::config type
 
