@@ -14,7 +14,7 @@ class conserver::params {
     'Debian': {
       $server_package_name = 'conserver-server'
       $client_package_name = 'conserver-client'
-      $service_name        = 'conserver'
+      $service_name        = 'conserver-server'
       $masters             = [ 'localhost' ]
       $confdir             = '/etc/conserver'
       $restart_cmd         = "/usr/sbin/service ${service_name} restart"
