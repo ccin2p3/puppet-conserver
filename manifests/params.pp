@@ -19,6 +19,11 @@ class conserver::params {
       $confdir             = '/etc/conserver'
       $restart_cmd         = "/usr/sbin/service ${service_name} restart"
       case $::operatingsystemmajrelease {
+        12.04: {
+          $server_init_config_file = '/etc/conserver/server.local'
+          $server_init_config_tpl = 'conserver/server/init_config_file.erb'
+          $server_init_config_hash = {}
+        }
         7: {
           $server_init_config_file = '/etc/default/conserver'
           $server_init_config_tpl = 'conserver/server/init_config_file.erb'
