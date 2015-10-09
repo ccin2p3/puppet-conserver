@@ -27,6 +27,7 @@ class conserver (
   $manage_init_defaults = true,
   $server_init_config_file = $::conserver::params::server_init_config_file,
   $server_init_config_hash = {},
+  $server_user = $::conserver::params::server_user,
   $use_hiera = true,
   $check_config_syntax = true
 ) inherits conserver::params {
@@ -46,6 +47,7 @@ class conserver (
   validate_bool($check_config_syntax)
   validate_absolute_path($server_init_config_file)
   validate_hash($server_init_config_hash)
+  validate_string($server_user)
 
   if $enable_client {
     include ::conserver::client
