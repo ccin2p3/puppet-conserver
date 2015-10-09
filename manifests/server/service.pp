@@ -16,7 +16,8 @@ class conserver::server::service {
   service { $::conserver::service_name:
     ensure     => running,
     enable     => true,
-    hasstatus  => true,
+    pattern    => $::conserver::service_process,
+    hasstatus  => $::conserver::status_cmd,
     hasrestart => true,
     restart    => $::conserver::reload_cmd
   }

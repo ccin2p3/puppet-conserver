@@ -24,12 +24,14 @@ class conserver::params {
           $server_init_config_tpl = 'conserver/server/init_config_file.erb'
           $server_init_config_hash = {}
           $server_user = 'conservr'
+          $status_cmd = false
         }
         7: {
           $server_init_config_file = '/etc/conserver/server.local'
           $server_init_config_tpl = 'conserver/server/init_config_file.erb'
           $server_init_config_hash = {}
           $server_user = 'conservr'
+          $status_cmd = true
         }
         8,'stretch/sid': {
           $server_init_config_file = '/usr/lib/systemd/system/conserver.service'
@@ -49,6 +51,7 @@ class conserver::params {
             }
           }
           $server_user = 'root'
+          $status_cmd = true
         }
         default: {
           fail("operatingsystemmajrelease `${::operatingsystemmajrelease}` not supported")
@@ -62,6 +65,7 @@ class conserver::params {
       $masters             = [ 'localhost' ]
       $confdir             = '/etc'
       $restart_cmd         = "/sbin/service ${service_name} restart"
+      $status_cmd          = true
       $server_user         = 'root'
       case $::operatingsystemmajrelease {
         6: {
@@ -97,4 +101,5 @@ class conserver::params {
     }
   }
   $reload_cmd = "service ${service_name} reload"
+  $service_process = 'conserver'
 }
