@@ -51,10 +51,12 @@ This module will affect the following resources, some of which are optional.
 ```puppet
 include ::conserver
 conserver::config::console { 'foo':
-  'type' => 'exec',
-  'rw'   => '*',
-  'exec' => 'ssh foo',
-  'master' => 'conserver'
+  'config' => {
+    'type' => 'exec',
+    'rw'   => '*',
+    'exec' => 'ssh foo',
+    'master' => 'conserver'
+  }
 }
 ```
 
@@ -66,9 +68,11 @@ class { conserver:
 }
  # automatic master
 conserver::config::console { 'foo':
-  'type' => 'exec',
-  'rw'   => '*',
-  'exec' => 'ssh foo',
+  'config' => {
+    'type' => 'exec',
+    'rw'   => '*',
+    'exec' => 'ssh foo',
+  }
 }
 ```
 
@@ -82,8 +86,9 @@ class { conserver:
 ```YAML
 conserver::config::console:
   bar:
-    type: device
-    device: /dev/ttyUSB0
+    config:
+      type: device
+      device: /dev/ttyUSB0
 ```
 
 ## Reference
