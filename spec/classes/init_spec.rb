@@ -21,7 +21,7 @@ describe 'conserver' do
         it { should contain_class('conserver::client') }
         it { should contain_class('conserver::client::install').that_comes_before('conserver::client::config') }
 
-        it { should contain_service('conserver') }
+        it { should contain_service(facts[:server_service_name]) }
         it { should contain_package(facts[:server_package_name]).with_ensure('present') }
         it { should contain_package(facts[:client_package_name]).with_ensure('present') }
       end
