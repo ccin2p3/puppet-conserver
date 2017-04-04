@@ -18,7 +18,7 @@ class conserver::params {
       $masters             = [ 'localhost' ]
       $confdir             = '/etc/conserver'
       $restart_cmd         = "/usr/sbin/service ${service_name} restart"
-      case $::operatingsystemmajrelease {
+      case $::operatingsystemmajrelease + 0 {
         7: {
           $server_init_config_file = '/etc/default/conserver'
           $server_init_config_tpl = 'conserver/server/init_config_file.erb'
@@ -54,7 +54,7 @@ class conserver::params {
       $masters             = [ 'localhost' ]
       $confdir             = '/etc'
       $restart_cmd         = "/sbin/service ${service_name} restart"
-      case $::operatingsystemmajrelease {
+      case $::operatingsystemmajrelease + 0 {
         6: {
           $server_init_config_file = '/etc/default/conserver'
           $server_init_config_tpl = 'conserver/server/init_config_file.erb'
