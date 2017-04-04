@@ -2,6 +2,10 @@
 
 This uses semantic versioning
 
+## 2017-04-04 Release 0.3.1
+
+* add support for puppet 4
+
 ## 2015-09-08 Release 0.2.4
 * real documentation
 * custom blocks can use hash using template

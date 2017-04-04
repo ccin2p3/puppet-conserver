@@ -1,6 +1,6 @@
 {
   "name": "ccin2p3-conserver",
-  "version": "0.2.4",
+  "version": "0.3.1",
   "source": "git@gitlab.in2p3.fr:cc-in2p3-puppet-service/module-conserver.git",
   "project_page": "https://gitlab.in2p3.fr/cc-in2p3-puppet-service/module-conserver",
   "issues_url": "https://gitlab.in2p3.fr/cc-in2p3-puppet-service/module-conserver/issues",
@@ -14,7 +14,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">=3.5.0 <4.0.0"
+      "version_requirement": ">=3.5.0 <5.0.0"
     }
   ],
   "operatingsystem_support": [
