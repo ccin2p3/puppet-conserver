@@ -1,4 +1,4 @@
-#ccin2p3-conserver
+# ccin2p3-conserver
 
 [![Build Status](https://api.travis-ci.org/ccin2p3/puppet-conserver.svg?branch=v0.2.4)](https://travis-ci.org/ccin2p3/puppet-conserver)
 
