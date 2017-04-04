@@ -19,21 +19,21 @@ class conserver::params {
       $confdir             = '/etc/conserver'
       $restart_cmd         = "/usr/sbin/service ${service_name} restart"
       case $::operatingsystemmajrelease {
-        12.04: {
+        '12.04': {
           $server_init_config_file = '/etc/conserver/server.local'
           $server_init_config_tpl = 'conserver/server/init_config_file.erb'
           $server_init_config_hash = {}
           $server_user = 'conservr'
           $status_cmd = false
         }
-        7: {
+        '7': {
           $server_init_config_file = '/etc/conserver/server.local'
           $server_init_config_tpl = 'conserver/server/init_config_file.erb'
           $server_init_config_hash = {}
           $server_user = 'conservr'
           $status_cmd = true
         }
-        8,'stretch/sid': {
+        '8','stretch/sid': {
           $server_init_config_file = '/usr/lib/systemd/system/conserver.service'
           $server_init_config_tpl = 'conserver/server/init_config_file_systemd.erb'
           $server_init_config_hash = {
@@ -68,12 +68,12 @@ class conserver::params {
       $status_cmd          = true
       $server_user         = 'root'
       case $::operatingsystemmajrelease {
-        6: {
+        '6': {
           $server_init_config_file = '/etc/default/conserver'
           $server_init_config_tpl = 'conserver/server/init_config_file.erb'
           $server_init_config_hash = {}
         }
-        7: {
+        '7': {
           $server_init_config_file = '/usr/lib/systemd/system/conserver.service'
           $server_init_config_tpl = 'conserver/server/init_config_file_systemd.erb'
           $server_init_config_hash = {
