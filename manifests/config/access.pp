@@ -12,22 +12,23 @@
 #
 # Parameters:
 # - $title hostname or ipaddress or *
-# - $trusted array of trusted hostnames
+# - $trust array of trusted hostnames
+#   renamed from reserved $trusted in puppet4
 # - $limited array of group or user names
 #            with limited console access
 # - $rejected array of hostnames to reject
 
 define conserver::config::access (
-  $trusted = [],
+  $trust = [],
   $limited = [],
   $rejected = [],
   $order = '15'
 ){
-  validate_array($trusted)
+  validate_array($trust)
   validate_array($limited)
   validate_array($rejected)
-  unless empty($trusted) {
-    $t_j = join($trusted, ',')
+  unless empty($trust) {
+    $t_j = join($trust, ',')
     $t_f = "\n  trusted ${t_j};\n"
   }
   unless empty($limited) {
