@@ -27,23 +27,23 @@ define conserver::config::access (
   validate_array($trust)
   validate_array($limited)
   validate_array($rejected)
-  unless empty($trust) {
+  if empty($trust) {
+    $t_f = ''
+  } else {
     $t_j = join($trust, ',')
     $t_f = "\n  trusted ${t_j};\n"
-  } else {
-    $t_f = ''
   }
-  unless empty($limited) {
+  if empty($limited) {
+    $l_f = ''
+  } else {
     $l_j = join($limited, ',')
     $l_f = "  limited ${l_j};\n"
-  } else {
-    $l_f = ''
   }
-  unless empty($rejected) {
+  if empty($rejected) {
+    $r_f = ''
+  } else {
     $r_j = join($rejected, ',')
     $r_f = "  rejected ${r_j};\n"
-  } else {
-    $r_f = ''
   }
 
   concat::fragment { "ConserverAccessBlock ${title}":
