@@ -2,11 +2,17 @@
 
 This uses semantic versioning
 
-## 2017-04-04 Release 0.3.2
+## 2017-04-04 Release 0.3.3
+
+* add support for puppet 4
+* add support for Debian/Ubunto (Vincent Bernat)
+* configure clients using hiera (Vincent Bernat)
+
+## 2017-04-04 Release 0.3.2 (UNRELEASED)
 
 * fix puppet 3 support
 
-## 2017-04-04 Release 0.3.1
+## 2017-04-04 Release 0.3.1 (UNRELEASED)
 
 * add support for puppet 4
 
