@@ -144,7 +144,7 @@ See `conserver.cf` manpage.
 
 #### Parameters
 
-* `trusted` (Array) List of trusted masters
+* `trust` (Array) List of trusted masters
 * `limited` (Array) List of masters with limited access
 * `rejected` (Array) List of masters with no access
 * `order` (String/`'15'`) Position in config file
@@ -153,7 +153,7 @@ See `conserver.cf` manpage.
 
 ```Puppet
 conserver::config::access { '*':
-  trusted => [ 'conserv01', 'conserv02' ]
+  trust => [ 'conserv01', 'conserv02' ]
 }
 ```
 
