@@ -8,8 +8,8 @@
   "license": "CECILL-B",
   "summary": "Manage conserver console management",
   "dependencies": [
-    { "name": "pupetlabs/stdlib","version_requirement":">= 2.4.0" },
-    { "name": "pupetlabs/concat","version_requirement":">= 1.0.4 <2.0.0" }
+    { "name": "puppetlabs/stdlib","version_requirement":">= 2.4.0" },
+    { "name": "puppetlabs/concat","version_requirement":">= 1.0.4 <2.0.0" }
   ],
   "requirements": [
     {
