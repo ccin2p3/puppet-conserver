@@ -80,6 +80,16 @@ end
                                    server_service_name: 'conserver-server',
                                    server_package_name: 'conserver-server',
                                    client_package_name: 'conserver-client'),
+  'Debian9' => @common_facts.merge(operatingsystem: 'Debian',
+                                   operatingsystemmajrelease: '9',
+                                   osfamily: 'Debian',
+                                   os: {
+                                     family: 'Debian',
+                                     release: { major: 9 }
+                                   },
+                                   server_service_name: 'conserver-server',
+                                   server_package_name: 'conserver-server',
+                                   client_package_name: 'conserver-client'),
   'Ubuntu12.04' => @common_facts.merge(operatingsystem: 'Ubuntu',
                                        operatingsystemmajrelease: '12.04',
                                        osfamily: 'Debian',
