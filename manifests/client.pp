@@ -13,11 +13,10 @@
 # [*package_name*]
 #   Override ostomatic package_name
 #
-class conserver::client (
-  $package_name = $::conserver::client_package_name,
-  $confdir      = $::conserver::confdir,
-) inherits conserver {
-
+class conserver::client {
+  include ::conserver
+  $package_name = $::conserver::client_package_name
+  $confdir      = $::conserver::confdir
   $configfile = "${confdir}/console.cf"
 
   class { 'conserver::client::install': }

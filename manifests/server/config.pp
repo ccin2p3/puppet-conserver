@@ -10,7 +10,7 @@
 # It ensures the configuration files are generated
 #
 class conserver::server::config {
-
+  include ::conserver
   include ::conserver::server
   $init_config_file = $::conserver::server_init_config_file
   $init_config_hash = $::conserver::server_init_config_hash
@@ -20,7 +20,7 @@ class conserver::server::config {
     warn           => true,
     ensure_newline => true,
     mode           => '0640',
-    owner          => $::conserver::params::server_user,
+    owner          => $::conserver::server_user,
   }
   if $::conserver::check_config_syntax {
     Concat <| title == 'ConserverConfigFile' |> {
@@ -31,10 +31,10 @@ class conserver::server::config {
   }
   if $::conserver::manage_init_defaults {
     include conserver::server::service::restart
-    $merged_init_config_hash = merge($::conserver::params::server_init_config_hash,$init_config_hash)
+    $merged_init_config_hash = merge($::conserver::server_init_config_hash,$init_config_hash)
     file {$init_config_file:
       ensure  => present,
-      content => template($::conserver::params::server_init_config_tpl),
+      content => template($::conserver::server_init_config_tpl),
       notify  => Exec[conserver_restart]
     }
   }

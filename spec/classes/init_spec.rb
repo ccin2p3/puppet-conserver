@@ -13,7 +13,6 @@ describe 'conserver' do
 
         it { should compile.with_all_deps }
 
-        it { should contain_class('conserver::params') }
         it { should contain_class('conserver::server') }
         it { should contain_class('conserver::server::install').that_comes_before('Class[conserver::server::config]') }
         it { should contain_class('conserver::server::config') }
