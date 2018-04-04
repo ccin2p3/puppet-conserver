@@ -6,3 +6,5 @@ spec/fixtures
 .bundle
 .gem
 Gemfile.lock
+/vendor/
+/.rake_tasks~

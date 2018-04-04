@@ -15,11 +15,11 @@ describe 'conserver' do
 
         it { should contain_class('conserver::params') }
         it { should contain_class('conserver::server') }
-        it { should contain_class('conserver::server::install').that_comes_before('conserver::server::config') }
+        it { should contain_class('conserver::server::install').that_comes_before('Class[conserver::server::config]') }
         it { should contain_class('conserver::server::config') }
-        it { should contain_class('conserver::server::service').that_subscribes_to('conserver::server::config') }
+        it { should contain_class('conserver::server::service').that_subscribes_to('Class[conserver::server::config]') }
         it { should contain_class('conserver::client') }
-        it { should contain_class('conserver::client::install').that_comes_before('conserver::client::config') }
+        it { should contain_class('conserver::client::install').that_comes_before('Class[conserver::client::config]') }
 
         it { should contain_service(facts[:server_service_name]) }
         it { should contain_package(facts[:server_package_name]).with_ensure('present') }
@@ -35,7 +35,7 @@ describe 'conserver' do
         :operatingsystem => 'Nexenta',
       }}
 
-      it { expect { should contain_package('conserver') }.to raise_error(Puppet::Error, /Nexenta not supported/) }
+      it { expect { should contain_package('conserver') }.to raise_error(Puppet::Error) }
     end
   end
 end

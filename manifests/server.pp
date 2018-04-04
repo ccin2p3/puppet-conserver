@@ -20,8 +20,8 @@ class conserver::server {
 
   $configfile = "${confdir}/conserver.cf"
 
-  class { 'conserver::server::install': } ->
-  class { 'conserver::server::config': } ~>
-  class { 'conserver::server::service': } ->
-  Class['conserver::server']
+  class { 'conserver::server::install': }
+  -> class { 'conserver::server::config': }
+  ~> class { 'conserver::server::service': }
+  -> Class['conserver::server']
 }

@@ -20,7 +20,7 @@ class conserver::client (
 
   $configfile = "${confdir}/console.cf"
 
-  class { 'conserver::client::install': } ->
-  class { 'conserver::client::config': } ->
-  Class['conserver::client']
+  class { 'conserver::client::install': }
+  -> class { 'conserver::client::config': }
+  -> Class['conserver::client']
 }

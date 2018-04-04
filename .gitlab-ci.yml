@@ -1,0 +1,100 @@
+---
+stages:
+  - test_2.4.1
+  - test_2.1.9
+
+before_script:
+  - bundle -v
+  - rm Gemfile.lock || true
+  - gem update --system
+  - gem update bundler
+  - gem --version
+  - bundle -v
+  - bundle install --without system_tests
+  - bundle exec puppet --version
+  - bundle exec puppet module build
+  - bundle exec puppet module install pkg/*.tar.gz
+  - sed -i 's/main$/& contrib non-free/' /etc/apt/sources.list
+  - apt-get update
+  - apt-get install conserver-server conserver-client -y
+  - conserver -v
+  - mkdir -p /tmp/conserver
+  - git clone https://github.com/gdraheim/docker-systemctl-replacement /tmp/dsr
+  - cp /tmp/dsr/files/docker/systemctl.py /usr/bin/systemctl 
+
+rubocop-2.4.1:
+  stage: test_2.4.1
+  image: ruby:2.4.1
+  allow_failure: true
+  script:
+    - bundle exec rake rubocop
+
+syntax-2.4.1:
+  stage: test_2.4.1
+  image: ruby:2.4.1
+  script:
+    - bundle exec rake syntax lint
+
+metadata-2.4.1:
+  stage: test_2.4.1
+  image: ruby:2.4.1
+  script:
+    - bundle exec rake metadata_lint
+
+rspec-puppet-2.4.1:
+  stage: test_2.4.1
+  image: ruby:2.4.1
+  variables:
+    PUPPET_GEM_VERSION: ~> 5.0
+    CHECK: spec
+  script:
+    - bundle update
+    - bundle exec rake $CHECK
+
+smoke-puppet-2.4.1:
+  stage: test_2.4.1
+  image: ruby:2.4.1
+  variables:
+    PUPPET_GEM_VERSION: ~> 5.0
+  script:
+    - bundle update
+    - bundle exec ./smoke/test -d
+
+rubocop-2.1.9:
+  stage: test_2.1.9
+  image: ruby:2.1.9
+  allow_failure: true
+  script:
+    - bundle exec rake rubocop
+
+syntax-2.1.9:
+  stage: test_2.1.9
+  image: ruby:2.1.9
+  script:
+    - bundle exec rake syntax lint
+
+metadata-2.1.9:
+  stage: test_2.1.9
+  image: ruby:2.1.9
+  script:
+    - bundle exec rake metadata_lint
+
+rspec-puppet-2.1.9:
+  stage: test_2.1.9
+  image: ruby:2.1.9
+  variables:
+    PUPPET_GEM_VERSION: ~> 4.0
+    CHECK: spec
+  script:
+    - bundle update
+    - bundle exec rake $CHECK
+
+smoke-puppet-2.1.9:
+  stage: test_2.1.9
+  image: ruby:2.1.9
+  variables:
+    PUPPET_GEM_VERSION: ~> 4.0
+  script:
+    - bundle update
+    - bundle exec ./smoke/test
+
