@@ -5,3 +5,6 @@ conserver::masters:
 conserver::manage_init_defaults: true
 conserver::check_config_syntax: true
 conserver::use_hiera: true
+conserver::enable_client: true
+conserver::enable_server: true
+conserver::manage_package: true

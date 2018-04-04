@@ -6,3 +6,4 @@ conserver::confdir: /etc
 conserver::restart_cmd: /sbin/service conserver restart
 conserver::status_cmd: true
 conserver::server_user: root
+conserver::reload_cmd: service conserver reload

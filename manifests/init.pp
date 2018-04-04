@@ -18,11 +18,12 @@ class conserver (
   String[1]        $restart_cmd,
   String[1]        $server_init_config_file,
   Hash             $server_init_config_hash,
+  String[1]        $server_init_config_tpl,
   String[1]        $server_package_name,
   String[1]        $server_user,
   String[1]        $service_name,
   String[1]        $service_process,
-  String[1]        $status_cmd,
+  Boolean          $status_cmd,
   Boolean          $use_hiera,
 ) {
 
