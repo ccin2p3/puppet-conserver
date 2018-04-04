@@ -1,0 +1,6 @@
+---
+conserver::server_package_name: conserver-server
+conserver::client_package_name: conserver-client
+conserver::service_name: conserver-server
+conserver::confdir: /etc/conserver'
+conserver::restart_cmd: /usr/sbin/service conserver-server restart

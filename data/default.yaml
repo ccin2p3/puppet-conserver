@@ -1,0 +1,7 @@
+---
+conserver::service_process: conserver
+conserver::masters:
+  - localhost
+conserver::manage_init_defaults: true
+conserver::check_config_syntax: true
+conserver::use_hiera: true

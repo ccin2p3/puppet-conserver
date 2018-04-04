@@ -1,0 +1,15 @@
+---
+conserver::server_init_config_file: /usr/lib/systemd/system/conserver.service
+conserver::server_init_config_tpl: conserver/server/init_config_file_systemd.erb
+conserver::server_init_config_hash:
+  Unit:
+    Description: Conserver Serial-Port Console Daemon
+    After: network.target
+  Service:
+    Type: forking
+    ExecStart: /usr/sbin/conserver -d
+    User: root
+  Install:
+    WantedBy: multi-user.target
+conserver::server_user: root
+conserver::status_cmd: true

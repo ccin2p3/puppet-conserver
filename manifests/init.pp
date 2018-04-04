@@ -4,52 +4,31 @@
 # Contributor(s) : ccin2p3
 #
 
-# == Class: conserver
-#
-# Full description of class conserver here.
-#
-# === Parameters
-#
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
 #
 class conserver (
-  $server_package_name = $::conserver::params::server_package_name,
-  $client_package_name = $::conserver::params::client_package_name,
-  $service_name        = $::conserver::params::service_name,
-  $service_process     = $::conserver::params::service_process,
-  $confdir             = $::conserver::params::confdir,
-  $masters             = $::conserver::params::masters,
-  $reload_cmd          = $::conserver::params::reload_cmd,
-  $restart_cmd         = $::conserver::params::restart_cmd,
-  $status_cmd          = $::conserver::params::status_cmd,
-  $enable_client       = true,
-  $enable_server       = true,
-  $manage_package      = true,
-  $manage_init_defaults = true,
-  $server_init_config_file = $::conserver::params::server_init_config_file,
-  $server_init_config_hash = {},
-  $server_user = $::conserver::params::server_user,
-  $use_hiera = true,
-  $check_config_syntax = true
-) inherits conserver::params {
+  Boolean          $check_config_syntax,
+  String[1]        $client_package_name,
+  String[1]        $confdir,
+  Boolean          $enable_client,
+  Boolean          $enable_server,
+  Boolean          $manage_init_defaults,
+  Boolean          $manage_package,
+  Array[String[1]] $masters,
+  String[1]        $reload_cmd,
+  String[1]        $restart_cmd,
+  String[1]        $server_init_config_file,
+  Hash             $server_init_config_hash,
+  String[1]        $server_package_name,
+  String[1]        $server_user,
+  String[1]        $service_name,
+  String[1]        $service_process,
+  String[1]        $status_cmd,
+  Boolean          $use_hiera,
+) {
 
   # validate parameters here
-  validate_string($server_package_name)
-  validate_string($client_package_name)
-  validate_string($service_name)
   validate_absolute_path($confdir)
-  validate_array($masters)
-  validate_string($reload_cmd)
-  validate_string($restart_cmd)
-  validate_bool($enable_client)
-  validate_bool($enable_server)
-  validate_bool($manage_init_defaults)
-  validate_bool($manage_package)
-  validate_bool($check_config_syntax)
   validate_absolute_path($server_init_config_file)
-  validate_hash($server_init_config_hash)
-  validate_string($server_user)
 
   if $enable_client {
     include ::conserver::client

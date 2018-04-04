@@ -1,0 +1,8 @@
+---
+conserver::server_package_name: conserver
+conserver::client_package_name: conserver-client
+conserver::service_name: conserver
+conserver::confdir: /etc
+conserver::restart_cmd: /sbin/service conserver restart
+conserver::status_cmd: true
+conserver::server_user: root

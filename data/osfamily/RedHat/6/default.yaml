@@ -1,0 +1,4 @@
+---
+conserver::server_init_config_file: /etc/default/conserver
+conserver::server_init_config_tpl: conserver/server/init_config_file.erb
+conserver::server_init_config_hash: {}
