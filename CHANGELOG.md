@@ -2,6 +2,11 @@
 
 This uses semantic versioning
 
+## 2018-04-04 Release 1.0.0
+
+* Drop support for puppet < 4.9.1
+* Revive tests
+
 ## 2017-04-04 Release 0.3.3
 
 * add support for puppet 4
