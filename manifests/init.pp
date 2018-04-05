@@ -8,7 +8,7 @@
 class conserver (
   Boolean          $check_config_syntax,
   String[1]        $client_package_name,
-  String[1]        $confdir,
+  Stdlib::Absolutepath $confdir,
   Boolean          $enable_client,
   Boolean          $enable_server,
   Boolean          $manage_init_defaults,
@@ -16,7 +16,7 @@ class conserver (
   Array[String[1]] $masters,
   String[1]        $reload_cmd,
   String[1]        $restart_cmd,
-  String[1]        $server_init_config_file,
+  Stdlib::Absolutepath $server_init_config_file,
   Hash             $server_init_config_hash,
   String[1]        $server_init_config_tpl,
   String[1]        $server_package_name,
@@ -26,10 +26,6 @@ class conserver (
   Boolean          $status_cmd,
   Boolean          $use_hiera,
 ) {
-
-  # validate parameters here
-  validate_absolute_path($confdir)
-  validate_absolute_path($server_init_config_file)
 
   if $enable_client {
     include ::conserver::client
