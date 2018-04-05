@@ -6,10 +6,10 @@ describe 'conserver' do
   context 'supported operating systems' do
     os_fixtures.each do |osname, osfixtures|
       describe "conserver class without any parameters on #{osname}" do
-        let(:params) {{ }}
-        let(:facts) {
+        let(:params) { {} }
+        let(:facts) do
           osfixtures[:facts]
-        }
+        end
 
         it { should compile.with_all_deps }
 
@@ -29,10 +29,12 @@ describe 'conserver' do
 
   context 'unsupported operating system' do
     describe 'conserver class without any parameters on Solaris/Nexenta' do
-      let(:facts) {{
-        :osfamily        => 'Solaris',
-        :operatingsystem => 'Nexenta',
-      }}
+      let(:facts) do
+        {
+          osfamily: 'Solaris',
+          operatingsystem: 'Nexenta'
+        }
+      end
 
       it { expect { should contain_package('conserver') }.to raise_error(Puppet::Error) }
     end

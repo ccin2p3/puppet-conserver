@@ -39,71 +39,89 @@ end
 }
 
 @os_fixtures = {
-  'RedHat6' => @common_fixtures.merge(facts: {
-                                   os: {
-                                     family: 'RedHat',
-                                     name: 'Scientific',
-                                     release: { major: '6', full: '6.9', minor: '9' }
-                                   },
-                                   },
-                                   params: {
-                                   server_service_name: 'conserver',
-                                   server_package_name: 'conserver',
-                                   has_systemd: false,
-                                   client_package_name: 'conserver-client'}),
-  'RedHat7' => @common_fixtures.merge(facts: {
-                                   os: {
-                                     family: 'RedHat',
-                                     release: { major: 7 }
-                                   },
-                                   },
-                                   params: {
-                                   has_systemd: false,
-                                   server_service_name: 'conserver',
-                                   server_package_name: 'conserver',
-                                   client_package_name: 'conserver-client'}),
-  'Debian7' => @common_fixtures.merge(facts: {
-                                   os: {
-                                     family: 'Debian',
-                                     release: { major: 7 }
-                                   },
-                                   },
-                                   params: {
-                                   has_systemd: false,
-                                   server_service_name: 'conserver-server',
-                                   server_package_name: 'conserver-server',
-                                   client_package_name: 'conserver-client'}),
-  'Debian8' => @common_fixtures.merge(facts: {
-                                   os: {
-                                     family: 'Debian',
-                                     release: { major: 8 }
-                                   },
-                                   },
-                                   params: {
-                                   has_systemd: true,
-                                   server_service_name: 'conserver-server',
-                                   server_package_name: 'conserver-server',
-                                   client_package_name: 'conserver-client'}),
-  'Debian9' => @common_fixtures.merge(facts: {
-                                   os: {
-                                     family: 'Debian',
-                                     release: { major: 9 }
-                                   },
-                                   },
-                                   params: {
-                                   has_systemd: true,
-                                   server_service_name: 'conserver-server',
-                                   server_package_name: 'conserver-server',
-                                   client_package_name: 'conserver-client'}),
-  'Ubuntu12.04' => @common_fixtures.merge(facts: {
-                                       os: {
-                                         family: 'Debian',
-                                         release: { major: 8 }
-                                       },
-                                       },
-                                       params: {
-                                       has_systemd: true,
-                                       server_service_name: 'conserver-server',
-                                       server_package_name: 'conserver-server',
-                                       client_package_name: 'conserver-client'})
+  'RedHat6' => @common_fixtures.merge(
+    facts: {
+      os: {
+        family: 'RedHat',
+        name: 'Scientific',
+        release: { major: '6', full: '6.9', minor: '9' }
+      }
+    },
+    params: {
+      server_service_name: 'conserver',
+      server_package_name: 'conserver',
+      has_systemd: false,
+      client_package_name: 'conserver-client'
+    }
+  ),
+  'RedHat7' => @common_fixtures.merge(
+    facts: {
+      os: {
+        family: 'RedHat',
+        release: { major: 7 }
+      }
+    },
+    params: {
+      has_systemd: false,
+      server_service_name: 'conserver',
+      server_package_name: 'conserver',
+      client_package_name: 'conserver-client'
+    }
+  ),
+  'Debian7' => @common_fixtures.merge(
+    facts: {
+      os: {
+        family: 'Debian',
+        release: { major: 7 }
+      }
+    },
+    params: {
+      has_systemd: false,
+      server_service_name: 'conserver-server',
+      server_package_name: 'conserver-server',
+      client_package_name: 'conserver-client'
+    }
+  ),
+  'Debian8' => @common_fixtures.merge(
+    facts: {
+      os: {
+        family: 'Debian',
+        release: { major: 8 }
+      }
+    },
+    params: {
+      has_systemd: true,
+      server_service_name: 'conserver-server',
+      server_package_name: 'conserver-server',
+      client_package_name: 'conserver-client'
+    }
+  ),
+  'Debian9' => @common_fixtures.merge(
+    facts: {
+      os: {
+        family: 'Debian',
+        release: { major: 9 }
+      }
+    },
+    params: {
+      has_systemd: true,
+      server_service_name: 'conserver-server',
+      server_package_name: 'conserver-server',
+      client_package_name: 'conserver-client'
+    }
+  ),
+  'Ubuntu12.04' => @common_fixtures.merge(
+    facts: {
+      os: {
+        family: 'Debian',
+        release: { major: 8 }
+      }
+    },
+    params: {
+      has_systemd: true,
+      server_service_name: 'conserver-server',
+      server_package_name: 'conserver-server',
+      client_package_name: 'conserver-client'
+    }
+  )
 }
