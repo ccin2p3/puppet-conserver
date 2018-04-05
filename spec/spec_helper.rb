@@ -50,7 +50,6 @@ end
     params: {
       server_service_name: 'conserver',
       server_package_name: 'conserver',
-      has_systemd: false,
       client_package_name: 'conserver-client'
     }
   ),
@@ -62,7 +61,6 @@ end
       }
     },
     params: {
-      has_systemd: false,
       server_service_name: 'conserver',
       server_package_name: 'conserver',
       client_package_name: 'conserver-client'
@@ -76,7 +74,6 @@ end
       }
     },
     params: {
-      has_systemd: false,
       server_service_name: 'conserver-server',
       server_package_name: 'conserver-server',
       client_package_name: 'conserver-client'
@@ -90,7 +87,6 @@ end
       }
     },
     params: {
-      has_systemd: true,
       server_service_name: 'conserver-server',
       server_package_name: 'conserver-server',
       client_package_name: 'conserver-client'
@@ -104,7 +100,6 @@ end
       }
     },
     params: {
-      has_systemd: true,
       server_service_name: 'conserver-server',
       server_package_name: 'conserver-server',
       client_package_name: 'conserver-client'
@@ -114,11 +109,10 @@ end
     facts: {
       os: {
         family: 'Debian',
-        release: { major: 8 }
+        release: { major: '12.04' }
       }
     },
     params: {
-      has_systemd: true,
       server_service_name: 'conserver-server',
       server_package_name: 'conserver-server',
       client_package_name: 'conserver-client'

@@ -12,6 +12,8 @@ describe 'conserver', type: 'class' do
         let(:params) { {} }
         it { should contain_package(osfixtures[:params][:server_package_name]) }
         it { should contain_package(osfixtures[:params][:client_package_name]) }
+        it { should contain_package(osfixtures[:params][:server_package_name]) }
+        it { should contain_service(osfixtures[:params][:server_service_name]) }
       end
       context 'with overriding package name' do
         let :params do
