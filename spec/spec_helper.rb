@@ -117,5 +117,31 @@ end
       server_package_name: 'conserver-server',
       client_package_name: 'conserver-client'
     }
+  ),
+  'Ubuntu14.04' => @common_fixtures.merge(
+    facts: {
+      os: {
+        family: 'Debian',
+        release: { major: '14.04' }
+      }
+    },
+    params: {
+      server_service_name: 'conserver-server',
+      server_package_name: 'conserver-server',
+      client_package_name: 'conserver-client'
+    }
+  ),
+  'Ubuntu16.04' => @common_fixtures.merge(
+    facts: {
+      os: {
+        family: 'Debian',
+        release: { major: '16.04' }
+      }
+    },
+    params: {
+      server_service_name: 'conserver-server',
+      server_package_name: 'conserver-server',
+      client_package_name: 'conserver-client'
+    }
   )
 }

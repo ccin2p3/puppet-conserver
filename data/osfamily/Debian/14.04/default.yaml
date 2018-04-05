@@ -1,0 +1,6 @@
+---
+conserver::server_init_config_file: /etc/conserver/server.local
+conserver::server_init_config_tpl: conserver/server/init_config_file.erb
+conserver::server_init_config_hash: {}
+conserver::server_user: conservr
+conserver::status_cmd: true
