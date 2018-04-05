@@ -39,11 +39,11 @@ class conserver::server::config {
         notify  => Exec[conserver_restart]
       }
     } else {
-    file {$init_config_file:
-      ensure  => present,
-      content => template($::conserver::server_init_config_tpl),
-      notify  => Exec[conserver_restart]
-    }
+      file {$init_config_file:
+        ensure  => present,
+        content => template($::conserver::server_init_config_tpl),
+        notify  => Exec[conserver_restart]
+      }
     }
   }
 }
