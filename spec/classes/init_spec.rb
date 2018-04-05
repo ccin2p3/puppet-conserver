@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-os_facts = @os_facts
+os_fixtures = @os_fixtures
 
 describe 'conserver' do
   context 'supported operating systems' do
-    os_facts.each do |osname, osfacts|
+    os_fixtures.each do |osname, osfixtures|
       describe "conserver class without any parameters on #{osname}" do
         let(:params) {{ }}
         let(:facts) {
-          osfacts
+          osfixtures[:facts]
         }
 
         it { should compile.with_all_deps }
@@ -20,9 +20,9 @@ describe 'conserver' do
         it { should contain_class('conserver::client') }
         it { should contain_class('conserver::client::install').that_comes_before('Class[conserver::client::config]') }
 
-        it { should contain_service(facts[:server_service_name]) }
-        it { should contain_package(facts[:server_package_name]).with_ensure('present') }
-        it { should contain_package(facts[:client_package_name]).with_ensure('present') }
+        it { should contain_service(osfixtures[:params][:server_service_name]) }
+        it { should contain_package(osfixtures[:params][:server_package_name]).with_ensure('present') }
+        it { should contain_package(osfixtures[:params][:client_package_name]).with_ensure('present') }
       end
     end
   end
