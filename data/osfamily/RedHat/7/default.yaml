@@ -11,3 +11,4 @@ conserver::server_init_config_hash:
     User: root
   Install:
     WantedBy: multi-user.target
+conserver::has_systemd: true

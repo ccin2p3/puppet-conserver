@@ -13,3 +13,4 @@ conserver::server_init_config_hash:
     WantedBy: multi-user.target
 conserver::server_user: root
 conserver::status_cmd: true
+conserver::has_systemd: true

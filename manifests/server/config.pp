@@ -32,10 +32,18 @@ class conserver::server::config {
   if $::conserver::manage_init_defaults {
     include conserver::server::service::restart
     $merged_init_config_hash = merge($::conserver::server_init_config_hash,$init_config_hash)
+    if $::conserver::has_systemd {
+      systemd::unit_file { "${::conserver::service_name}.service":
+        ensure  => present,
+        content => template($::conserver::server_init_config_tpl),
+        notify  => Exec[conserver_restart]
+      }
+    } else {
     file {$init_config_file:
       ensure  => present,
       content => template($::conserver::server_init_config_tpl),
       notify  => Exec[conserver_restart]
+    }
     }
   }
 }

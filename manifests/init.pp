@@ -11,6 +11,7 @@ class conserver (
   Stdlib::Absolutepath $confdir,
   Boolean          $enable_client,
   Boolean          $enable_server,
+  Boolean          $has_systemd,
   Boolean          $manage_init_defaults,
   Boolean          $manage_package,
   Array[String[1]] $masters,

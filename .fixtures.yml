@@ -4,5 +4,9 @@ fixtures:
        repo: "https://github.com/puppetlabs/puppetlabs-stdlib.git"
      concat:
        repo: "https://github.com/puppetlabs/puppetlabs-concat.git"
+  forge_modules:
+     camptocamp:
+       repo: "camptocamp-systemd"
+       ref: '1.1.1'
 #  symlinks:
 #    patterndb: "#{source_dir}"

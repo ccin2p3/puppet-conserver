@@ -8,3 +8,4 @@ conserver::use_hiera: true
 conserver::enable_client: true
 conserver::enable_server: true
 conserver::manage_package: true
+conserver::has_systemd: false

@@ -49,6 +49,7 @@ end
                                    },
                                    server_service_name: 'conserver',
                                    server_package_name: 'conserver',
+                                   has_systemd: false,
                                    client_package_name: 'conserver-client'),
   'RedHat7' => @common_facts.merge(operatingsystem: 'RedHat',
                                    operatingsystemmajrelease: '7',
@@ -57,12 +58,14 @@ end
                                      family: 'RedHat',
                                      release: { major: 7 }
                                    },
+                                   has_systemd: false,
                                    server_service_name: 'conserver',
                                    server_package_name: 'conserver',
                                    client_package_name: 'conserver-client'),
   'Debian7' => @common_facts.merge(operatingsystem: 'Debian',
                                    operatingsystemmajrelease: '7',
                                    osfamily: 'Debian',
+                                   has_systemd: false,
                                    os: {
                                      family: 'Debian',
                                      release: { major: 7 }
@@ -73,6 +76,7 @@ end
   'Debian8' => @common_facts.merge(operatingsystem: 'Debian',
                                    operatingsystemmajrelease: '8',
                                    osfamily: 'Debian',
+                                   has_systemd: true,
                                    os: {
                                      family: 'Debian',
                                      release: { major: 8 }
@@ -83,6 +87,7 @@ end
   'Debian9' => @common_facts.merge(operatingsystem: 'Debian',
                                    operatingsystemmajrelease: '9',
                                    osfamily: 'Debian',
+                                   has_systemd: true,
                                    os: {
                                      family: 'Debian',
                                      release: { major: 9 }
@@ -93,6 +98,7 @@ end
   'Ubuntu12.04' => @common_facts.merge(operatingsystem: 'Ubuntu',
                                        operatingsystemmajrelease: '12.04',
                                        osfamily: 'Debian',
+                                       has_systemd: true,
                                        os: {
                                          family: 'Debian',
                                          release: { major: 8 }
