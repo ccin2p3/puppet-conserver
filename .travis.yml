@@ -33,4 +33,8 @@ env:
     - PUPPET_GEM_VERSION="~> 5.5.0" FIXTURES_YML=.fixtures.yml
 matrix:
   fast_finish: true
+  exclude:
+  - rvm: 2.1.9
+    env: PUPPET_GEM_VERSION="~> 5.5.0"
+ 
 
