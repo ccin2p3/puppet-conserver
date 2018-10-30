@@ -2,18 +2,16 @@
 # rrindex.rb
 #
 
-def hash_val(string)
-  seed = 2_184_401_929
-  hash_val = 0
-  string.unpack('C*').map do |c|
-    hash_val = (hash_val * seed) + c
-    hash_val &= 0xffffffff
-  end
-  hash_val
-end
-
-#
 module Puppet::Parser::Functions
+  def self._hash_val(string)
+    seed = 2_184_401_929
+    hash_val = 0
+    string.unpack('C*').map do |c|
+      hash_val = (hash_val * seed) + c
+      hash_val &= 0xffffffff
+    end
+    hash_val
+  end
   newfunction(:rrindex, type: :rvalue, doc: <<-EOS
 Returns round robin index using a string as input.
 
@@ -39,7 +37,7 @@ Example:  myindex = rrindex($::hostname,5)
       raise(Puppet::Error, "rrindex(): index_max `#{index_max}`) should be > 0 ")
     end
 
-    hash_val(string) % index_max
+    Puppet::Parser::Functions._hash_val(string) % index_max
   end
 end
 
