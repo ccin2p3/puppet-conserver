@@ -143,5 +143,18 @@ end
       server_package_name: 'conserver-server',
       client_package_name: 'conserver-client'
     }
+  ),
+  'Ubuntu18.04' => @common_fixtures.merge(
+    facts: {
+      os: {
+        family: 'Debian',
+        release: { major: '18.04' }
+      }
+    },
+    params: {
+      server_service_name: 'conserver-server',
+      server_package_name: 'conserver-server',
+      client_package_name: 'conserver-client'
+    }
   )
 }
