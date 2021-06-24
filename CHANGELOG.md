@@ -2,6 +2,10 @@
 
 This uses semantic versioning
 
+## 2021-06-24 Release 1.1.0
+
+* Add EL8 support
+
 ## 2018-04-04 Release 1.0.0
 
 * Drop support for puppet < 4.9.1
