@@ -31,10 +31,10 @@ Example:  myindex = rrindex($::hostname,5)
       raise(Puppet::Error, "rrindex(): `#{string}` is not a String")
     end
     unless index_max.is_a?(Integer)
-      raise(Puppet::Error, "rrindex(): index_max `#{index_max}`) should be a FixNum ")
+      raise(Puppet::Error, "rrindex(): index_max `#{index_max}` should be a FixNum ")
     end
     unless index_max > 0
-      raise(Puppet::Error, "rrindex(): index_max `#{index_max}`) should be > 0 ")
+      raise(Puppet::Error, "rrindex(): index_max `#{index_max}` should be > 0 ")
     end
 
     Puppet::Parser::Functions._hash_val(string) % index_max
