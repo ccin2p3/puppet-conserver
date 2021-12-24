@@ -3,7 +3,7 @@ require 'spec_helper'
 os_fixtures = @os_fixtures
 
 describe 'conserver', type: 'class' do
-  %w[RedHat7 Debian8 Debian9 Ubuntu16.04].each do |osname|
+  %w[RedHat7].each do |osname|
     osfixtures = os_fixtures[osname]
 
     context "On os `#{osname}`" do
@@ -14,7 +14,7 @@ describe 'conserver', type: 'class' do
       it { should contain_systemd__unit_file("#{osfixtures[:params][:server_service_name]}.service") }
     end
   end
-  ['RedHat6', 'Debian7', 'Ubuntu12.04'].each do |osname|
+  %w[RedHat6 Debian7 Debian8 Debian9 Ubuntu12.04 Ubuntu16.04].each do |osname|
     osfixtures = os_fixtures[osname]
 
     context "On os `#{osname}`" do
