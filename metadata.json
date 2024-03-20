@@ -1,6 +1,6 @@
 {
   "name": "ccin2p3-conserver",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "source": "https://github.com/ccin2p3/puppet-conserver.git",
   "project_page": "https://github.com/ccin2p3/puppet-conserver",
   "issues_url": "https://github.com/ccin2p3/puppet-conserver/issues",
@@ -15,7 +15,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">=4.9.1 <6.0.0"
+      "version_requirement": ">=4.9.1 <9.0.0"
     }
   ],
   "operatingsystem_support": [
