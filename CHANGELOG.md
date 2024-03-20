@@ -2,6 +2,10 @@
 
 This uses semantic versioning
 
+## 2024-03-20 Release 1.2.0
+
+* Add EL9 support
+
 ## 2021-06-24 Release 1.1.0
 
 * Add EL8 support
